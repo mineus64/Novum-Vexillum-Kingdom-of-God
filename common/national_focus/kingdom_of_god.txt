@@ -1,0 +1,1965 @@
+﻿focus_tree = {
+	id = kingdom_of_god
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 100
+			tag = HLS 
+		}
+	}
+
+	default = no
+
+	continuous_focus_position = { 
+		x = 0 
+		y = 1000 
+	}
+
+	#################
+	# STARTING FOCI #
+	#################
+
+	# Challenge the Lateran Treaty
+	focus = {
+		id = challenge_lateran_treaty
+		icon = GFX_focus_generic_monarchy_1
+
+		cost = 10
+
+		x = 20
+		y = 0
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		mutually_exclusive = {
+			focus = reaffirm_lateran_treaty
+		}
+		
+		completion_reward = {
+			ITA = {
+				country_event = {
+					id = kog.0
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	# Reaffirm the Lateran Treaty
+	focus = {
+		id = reaffirm_lateran_treaty
+		icon = GFX_focus_generic_diplomatic_treaty
+
+		cost = 10
+
+		x = 30
+		y = 0
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		mutually_exclusive = {
+			focus = challenge_lateran_treaty
+		}
+
+		completion_reward = {
+			news_event {
+				id = kog.1
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}		
+	}
+
+	##################
+	# CHALLENGE TREE #
+	##################
+
+	focus = {
+		id = recover_san_marino
+		icon = GFX_focus_generic_industry_1
+
+		cost = 10
+
+		x = 20
+		y = 1
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = challenge_lateran_treaty
+		}
+
+		bypass = {
+			owns_state = 854
+		}
+
+		available = {
+			owns_state = 2
+		}
+
+		completion_reward = {
+			SAN = {
+				country_event = {
+					id = kog.demandsan
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = demand_papal_states
+		icon = GFX_goal_generic_demand_territory
+
+		cost = 10
+
+		x = 18
+		y = 2
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = recover_san_marino
+		}
+
+		bypass = {
+			owns_state = 1128
+		}
+
+		mutually_exclusive = {
+			focus = purchase_papal_states
+			focus = drop_papal_claims
+		}
+
+		completion_reward = {
+			ITA = {
+				country_event = {
+					id = kog.demand_full_territory
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = purchase_papal_states
+		icon = GFX_focus_befriend_italy
+
+		cost = 10
+
+		x = 20
+		y = 2
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = recover_san_marino
+		}
+
+		bypass = {
+			owns_state = 1128
+		}
+
+		mutually_exclusive = {
+			focus = demand_papal_states
+			focus = drop_papal_claims
+		}
+
+		completion_reward = {
+			ITA = {
+				country_event = {
+					id = kog.purchase_papal_states
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = drop_papal_claims
+		icon = GFX_goal_generic_major_alliance
+
+		cost = 10
+
+		x = 22
+		y = 2
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = recover_san_marino
+		}
+
+		bypass = {
+			owns_state = 1128
+		}
+
+		mutually_exclusive = {
+			focus = demand_papal_states
+			focus = purchase_papal_states
+		}
+
+		completion_reward = {
+			1128 = {
+				remove_claim_by = HLS
+			}
+		}
+	}
+
+	focus = {
+		id = prepare_the_crusade
+		icon = GFX_goal_generic_political_pressure
+
+		cost = 10
+
+		x = 20
+		y = 3
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = declare_papal_alliance
+		}
+
+		prerequisite = {
+			focus = demand_papal_states
+			focus = purchase_papal_states
+			focus = drop_papal_claims
+		}
+
+		mutually_exclusive = {
+			focus = love_the_sinner
+		}
+
+		completion_reward = {
+			add_ideas = {
+				kog_prepare_the_crusade
+			}
+		}
+	}
+
+	focus = {
+		id = love_the_sinner
+		icon = GFX_goal_liberty
+
+		cost = 10
+
+		x = 22
+		y = 3
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = declare_papal_alliance
+		}
+
+		mutually_exclusive = {
+			focus = prepare_the_crusade
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = call_to_arms
+		icon = GFX_focus_generic_little_entente
+
+		cost = 10
+
+		x = 20
+		y = 4
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = prepare_the_crusade
+		}
+
+		completion_reward = {
+			add_ideas = {
+				kog_call_to_arms
+			}
+		}
+	}
+
+	focus = {
+		id = arm_the_faithful
+		icon = GFX_goal_generic_small_arms
+
+		cost = 10
+
+		x = 18
+		y = 4
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = prepare_the_crusade
+		}
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 50000
+				producer = HLS
+			}
+		}
+	}
+
+	focus = {
+		id = ready_the_spirit
+		icon = GFX_goal_generic_propaganda
+
+		cost = 10
+
+		x = 22
+		y = 4
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = prepare_the_crusade
+		}
+
+		completion_reward = {
+			add_stability = 0.1
+			add_war_support = 0.1
+			add_ideas = {
+				kog_ready_the_spirit
+			}
+		}
+	}
+
+	focus = {
+		id = deus_lo_vult
+		icon = GFX_goal_flames_of_rebellion
+
+		cost = 10
+
+		x = 20
+		y = 5
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = arm_the_faithful
+		}
+
+		prerequisite = {
+			focus = call_to_arms
+		}
+
+		prerequisite = {
+			focus = ready_the_spirit
+		}
+
+		completion_reward = {
+			declare_war_on = {
+				target = ISR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = PAL
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = recover_holy_land
+
+		cost = 10
+
+		x = 20
+		y = 6
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = deus_lo_vult
+		}
+
+		available = {
+			owns_state = 812
+			owns_state = 811
+			owns_state = 454
+			owns_state = 914
+			owns_state = 915
+			owns_state = 810
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = JOR
+			}
+
+			create_wargoal = {
+				type = annex_everything
+				target = SAU
+			}
+
+			create_wargoal = {
+				type = annex_everything
+				target = EGY
+			}
+
+			create_wargoal = {
+				type = annex_everything
+				target = SYR
+			}
+
+			create_wargoal = {
+				type = annex_everything
+				target = LEB
+			}
+		}
+	}
+
+	focus = {
+		id = establish_crusader_states
+
+		cost = 20
+
+		x = 19
+		y = 7
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = recover_holy_land
+		}
+
+		mutually_exclusive = {
+			focus = direct_rule
+		}
+
+		available = {
+			NOT = {
+				country_exists = JOR
+				country_exists = SAU
+				country_exists = EGY
+				country_exists = SYR
+				country_exists = LEB
+			}
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = direct_rule
+
+		cost = 20
+
+		x = 21
+		y = 7
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = recover_holy_land
+		}
+
+		mutually_exclusive = {
+			focus = establish_crusader_states
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = peace_on_earth
+
+		cost = 10
+
+		x = 23
+		y = 8
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = establish_crusader_states
+			focus = direct_rule
+		}
+
+		mutually_exclusive = {
+			focus = continue_the_crusade
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = continue_the_crusade
+
+		cost = 10
+
+		x = 17
+		y = 8
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = direct_rule
+		}
+
+		mutually_exclusive = {
+			focus = peace_on_earth
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = heathens
+
+		cost = 10
+
+		x = 15
+		y = 9
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = continue_the_crusade
+		}
+
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = heretics
+
+		cost = 10
+
+		x = 17
+		y = 9
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = continue_the_crusade
+		}
+
+		mutually_exclusive = {
+			focus = compromise
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = compromise
+
+		cost = 10
+
+		x = 19
+		y = 9
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = continue_the_crusade
+		}
+
+		mutually_exclusive = {
+			focus = heretics
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = remove_kebab
+
+		cost = 10
+
+		x = 15
+		y = 10
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = heathens
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = TUR
+			}
+		}
+	}
+
+	focus = {
+		id = expand_holy_land
+
+		cost = 10
+
+		x = 13
+		y = 10
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = heathens
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = SAU
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = IRQ
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = KUW
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = TUR
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = BAR
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = UAE
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = OMA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = YEM
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = QAT
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = CYP
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NCY
+			}
+		}
+	}
+
+	focus = {
+		id = false_christians
+
+		cost = 10
+
+		x = 17
+		y = 10
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = heretics
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = NGA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ETH
+			}
+		}
+	}
+
+	focus = {
+		id = first_heretics
+
+		cost = 10
+
+		x = 19
+		y = 10
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = heretics
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = GRE
+			}
+		}
+	}
+
+	focus = {
+		id = secure_north_africa
+
+		cost = 10
+
+		x = 14
+		y = 11
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = expand_holy_land
+		}
+
+		prerequisite = {
+			focus = remove_kebab
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = LBA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = TUN
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ALG
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = MOR
+			}
+		}
+	}
+
+	focus = {
+		id = slavic_domination
+
+		cost = 10
+
+		x = 18
+		y = 11
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = false_christians
+		}
+
+		prerequisite = {
+			focus = first_heretics
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = MAC
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ALB
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SER
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = BOS
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = CRO
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SLV
+			}
+		}
+	}
+
+	focus = {
+		id = the_final_crusade
+
+		cost = 20
+
+		x = 16
+		y = 12
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = secure_north_africa
+		}
+
+		prerequisite = {
+			focus = slavic_domination
+		}
+
+		mutually_exclusive = {
+			focus = peace_at_last
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = peace_at_last
+
+		cost = 10
+
+		x = 20
+		y = 12
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = secure_north_africa
+		}
+
+		prerequisite = {
+			focus = compromise
+		}
+
+		mutually_exclusive = {
+			focus = the_final_crusade
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = anglican_menace
+
+		cost = 10
+
+		x = 16
+		y = 13
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = the_final_crusade
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = ENG
+			}
+		}
+	}
+
+	focus = {
+		id = protestant_heresy
+
+		cost = 10
+
+		x = 14
+		y = 13
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = the_final_crusade
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = GER
+			}
+		}
+	}
+
+	focus = {
+		id = last_heretics
+
+		cost = 10
+
+		x = 18
+		y = 13
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = the_final_crusade
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = SOV
+			}
+		}
+	}
+
+	focus = {
+		id = communist_bandits
+
+		cost = 10
+
+		x = 17
+		y = 14
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = anglican_menace
+		}
+
+		prerequisite = {
+			focus = last_heretics
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = PRC
+			}
+		}
+	}
+
+	focus = {
+		id = fall_of_liberty
+
+		cost = 10
+
+		x = 15
+		y = 14
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = protestant_heresy
+		}
+
+		prerequisite = {
+			focus = anglican_menace
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = USA
+			}
+		}
+	}
+
+	focus = {
+		id = a_new_eden
+
+		cost = 10
+
+		x = 16
+		y = 15
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = fall_of_liberty
+		}
+
+		prerequisite = {
+			focus = communist_bandits
+		}
+
+		completion_reward = {
+			set_cosmetic_tag = HLS_EDN_monarchist
+		}
+	}
+
+	#################
+	# REAFFIRM TREE #
+	#################
+
+
+
+	#######################
+	# PAPAL ALLIANCE TREE #
+	#######################
+
+	focus = {
+		id = declare_papal_alliance
+		icon = GFX_focus_generic_support_the_left_right
+
+		cost = 10
+
+		x = 25
+		y = 1
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = reaffirm_lateran_treaty
+			focus = challenge_lateran_treaty
+		}
+
+		completion_reward = {
+			create_faction = "Papal Alliance"
+		}
+	}
+
+	###################
+	# INDUSTRIAL TREE #
+	###################
+
+	focus = {
+		id = industrialise_the_vatican
+		icon = GFX_focus_generic_industry_2
+
+		cost = 20
+
+		x = 4
+		y = 0
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		bypass = {
+			state = 835
+			free_building_slots = {
+				building = all
+				size > 0
+				include_locked = yes
+			}
+		}
+
+		available = {
+			owns_state = 835
+		}
+
+		completion_reward = {
+			835 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				set_building_level = {
+					type = infrastructure
+					level = 5
+					instant_build = yes
+				}
+			}
+			add_stability = -0.05
+		}
+	}
+
+	focus = {
+		id = rebuild_rome
+		icon = GFX_focus_generic_industry_3
+
+		cost = 20
+
+		x = 0
+		y = 1
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = industrialise_the_vatican
+		}
+
+		bypass = {
+			state = 2
+			free_building_slots = {
+				building = all
+				size > 0
+				include_locked = yes
+			}
+		}
+
+		available = {
+			owns_state = 2
+		}
+
+		completion_reward = {
+			2 = {
+				add_extra_state_shared_building_slots = 6
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+				set_building_level = {
+					type = infrastructure
+					level = 8
+					instant_build = yes
+				}
+			}
+			add_stability = 0.1
+		}
+	}
+
+	focus = {
+		id = expand_san_marino
+		icon = GFX_focus_generic_industry_3
+
+		cost = 15
+
+		x = 0
+		y = 2
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = rebuild_rome
+		}
+
+		bypass = {
+			state = 854
+			free_building_slots = {
+				building = all
+				size > 0
+				include_locked = yes
+			}
+		}
+
+		available = {
+			owns_state = 854
+		}
+
+		completion_reward = {
+			854 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				set_building_level = {
+					type = infrastructure
+					level = 6
+					instant_build = yes
+				}
+			}
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = invest_in_papal_states
+		icon = GFX_focus_generic_industry_3
+
+		cost = 15
+
+		x = 0
+		y = 3
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = expand_san_marino
+		}
+
+		bypass = {
+			state = 1128
+			free_building_slots = {
+				building = all
+				size > 0
+				include_locked = yes
+			}
+		}
+
+		available = {
+			owns_state = 1128
+		}
+
+		completion_reward = {
+			1128 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				set_building_level = {
+					type = infrastructure
+					level = 6
+					instant_build = yes
+				}
+			}
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = rebuild_jerusalem
+		icon = GFX_focus_generic_industry_3
+
+		cost = 20
+
+		x = 0
+		y = 4
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = invest_in_papal_states
+		}
+
+		available = {
+			owns_state = 454
+		}
+
+		completion_reward = {
+			454 = {
+				add_extra_state_shared_building_slots = 6
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+				set_building_level = {
+					type = infrastructure
+					level = 8
+					instant_build = yes
+				}
+			}
+			add_stability = 0.1
+		}
+	}
+
+	focus = {
+		id = add_civ_1
+		icon = GFX_goal_generic_construct_civ_factory
+
+		cost = 10
+
+		x = 2
+		y = 1
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = industrialise_the_vatican
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = add_civ_2
+		icon = GFX_goal_generic_construct_civ_factory
+
+		cost = 10
+
+		x = 2
+		y = 2
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = add_civ_1
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = add_civ_3
+		icon = GFX_goal_generic_construct_civ_factory
+
+		cost = 10
+
+		x = 2
+		y = 3
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = add_civ_2
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = add_civ_4
+		icon = GFX_goal_generic_construct_civ_factory
+
+		cost = 20
+
+		x = 2
+		y = 4
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = add_civ_3
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		mutually_exclusive = {
+			focus = add_mil_4
+			focus = add_dock_4
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			add_ideas = {
+				id = kog_industrial_focus
+			}
+		}
+	}
+
+	focus = {
+		id = add_mil_1
+		icon = GFX_goal_generic_construct_mil_factory
+
+		cost = 10
+
+		x = 4
+		y = 1
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = industrialise_the_vatican
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = add_mil_2
+		icon = GFX_goal_generic_construct_mil_factory
+
+		cost = 10
+
+		x = 4
+		y = 2
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = add_mil_1
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = add_mil_3
+		icon = GFX_goal_generic_construct_mil_factory
+
+		cost = 10
+
+		x = 4
+		y = 3
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = add_mil_2
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = add_mil_4
+		icon = GFX_goal_generic_construct_mil_factory
+
+		cost = 20
+
+		x = 4
+		y = 4
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = add_mil_3
+		}
+
+		mutually_exclusive = {
+			focus = add_dock_4
+			focus = add_civ_4
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			add_ideas = {
+				id = kog_military_focus
+			}
+		}
+	}
+
+	focus = {
+		id = add_dock_1
+		icon = GFX_goal_generic_construct_civilian
+
+		cost = 10
+
+		x = 6
+		y = 1
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = industrialise_the_vatican
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = add_dock_2
+		icon = GFX_goal_generic_construct_civilian
+
+		cost = 10
+
+		x = 6
+		y = 2
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = add_dock_1
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = add_dock_3
+		icon = GFX_goal_generic_construct_civilian
+
+		cost = 10
+
+		x = 6
+		y = 3
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = add_dock_2
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = add_dock_4
+		icon = GFX_goal_generic_construct_civilian
+
+		cost = 20
+
+		x = 6
+		y = 4
+
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = add_dock_3
+		}
+
+		mutually_exclusive = {
+			focus = add_mil_4
+			focus = add_civ_4
+		}
+
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+					building = all
+					size > 0
+					include_locked = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = dockyard
+				level = 2
+				instant_build = yes
+			}
+			add_ideas = {
+				id = kog_dockyard_focus
+			}
+		}
+	}
+
+	################
+	# THE OLD WAYS #
+	################
+
+	focus = {
+		id = the_old_ways
+		icon = GFX_focus_RAJ_indian_gentlemen_offcers
+
+		cost = 10
+
+		x = 8
+		y = 0
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		mutually_exclusive = {
+			focus = the_new_ways
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = condemn_homosexuality
+
+		cost = 10
+		
+		x = 8
+		y = 1
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = the_old_ways
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = indulgences
+
+		cost = 10
+
+		x = 11
+		y = 1
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = the_old_ways
+			focus = the_new_ways
+		}
+
+		mutually_exclusive = {
+			focus = remember_martin_luther
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	################
+	# THE NEW WAYS #
+	################
+
+	focus = {
+		id = the_new_ways
+		icon = GFX_goal_generic_national_unity
+
+		cost = 10
+
+		x = 16
+		y = 0
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		mutually_exclusive = {
+			focus = the_old_ways
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = tolerate_homosexuality
+
+		cost = 10
+
+		x = 16
+		y = 1
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = the_new_ways
+		}
+	}
+
+	focus = {
+		id = remember_martin_luther
+
+		cost = 10
+
+		x = 13
+		y = 1
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = the_new_ways
+		}
+
+		mutually_exclusive = {
+			focus = indulgences
+		}
+	}
+}

@@ -1,4 +1,4 @@
-version="1.11"
+version="1.0"
 tags={
 	"Alternative History"
 	"Events"
@@ -11,3 +11,8 @@ tags={
 }
 name="Novum Vexillum: The Kingdom of God"
 supported_version="1.11.5"
+path="mod/NV-KoG"
+#replace_path="common/national_focus"
+dependencies={
+	"Novum Vexillum"
+}

@@ -1,0 +1,538 @@
+﻿add_namespace = kog
+
+country_event = {
+	id = kog.0
+    
+	title = lateran_challenge_event_header # The localisable text that appears as a header
+    desc = lateran_challenge_event_body # The localisable main text body that appears
+	picture = GFX_report_event_election_vote # Image displayed alongside the text.
+
+	is_triggered_only = yes # Optional : if set to "yes" the event will only occur by command
+
+	hidden = no # Optional : if set to "yes" no one will see the event
+
+	fire_only_once = yes # Optional : if set to "yes" the event will never occur more than once
+	
+	# Deny the request
+    option = {
+		name = lateran_response.1
+
+		ai_chance = {
+			factor = 0
+		}
+
+		HLS = {
+			country_event = {
+				id = kog.latchal.1
+			}
+		}
+
+		news_event = {
+			id = kog.lateran_denial_news
+		}
+	}
+	# Give the Papal States Rome
+	option = {
+		name = lateran_response.2
+
+		ai_chance = {
+			factor = 75
+		}
+
+		HLS = {
+			country_event = {
+				id = kog.latchal.2
+				add_state_core = 2
+			}
+
+			transfer_state = 2
+		}
+
+		news_event = {
+			id = kog.rome_surrender
+		}
+	}
+	# Give the Papal States Rome and Marche
+	option = {
+		name = lateran_response.3
+
+		ai_chance = {
+			factor = 20
+		}
+
+		HLS = {
+			country_event = {
+				id = kog.latchal.3
+				add_state_core = 2
+				add_state_core = 1128
+			}
+
+			transfer_state = 2
+			transfer_state = 1128
+		}
+
+		id = kog.papalsurrender
+	}
+	# Give the Papal States all of Italy
+	option = {
+		name = lateran_response.4
+
+		ai_chance = {
+			factor = 5
+		}
+
+		HLS = {
+			country_event = {
+				id = kog.latchal.4
+			}
+		}
+
+		ITA = {
+			every_core_state = {
+    			transfer_state_to = HLS
+  			}
+		}
+
+		id = kog.kogproclaimed
+	}
+
+}
+
+# Request has been denied
+country_event = {
+	id = kog.latchal.1
+	
+	title = lateran_challenge_denied_header
+	desc = lateran_challenge_denied_body
+	picture = GFX_report_event_election_vote
+
+	is_triggered_only = yes
+
+	hidden = no
+
+	fire_only_once = yes
+	# Angry response
+	option = {
+		name = lateran_denied_response.1
+
+		add_opinion_modifier = {
+			target = ITA
+			modifier = denied_kog
+		}
+
+		add_state_claim = 2
+		add_state_claim = 1128
+
+		ITA = {
+			add_opinion_modifier = {
+				target = HLS
+				modifier = demanded_kog
+			}
+		}
+	}
+	# Excommunicate Italy
+	option = {
+		name = lateran_denied_response.2
+
+		add_opinion_modifier = {
+			target = ITA
+			modifier = excommunicated
+		}
+
+		add_state_claim = 2
+		add_state_claim = 1128
+
+		ITA = {
+			add_opinion_modifier = {
+				target = HLS
+				modifier = excommunicated
+			}
+		}
+
+		create_wargoal = {
+			type = annex_everything
+			target = ITA
+		}
+	}
+	# Apologise
+	option = {
+		name = lateran_denied_response.3
+
+		ITA = {
+			country_event = {
+				id = kog.papalapology
+			}
+		}
+	}
+}
+
+# Request denied news event
+news_event = {
+	id = kog.lateran_denial_news
+
+	title = lateran_challenge_denied_news_title
+	desc = lateran_challenge_denied_news_body
+	picture = GFX_report_event_election_vote
+
+	is_triggered_only = yes
+	hiden = no
+	fire_only_once = yes
+
+	option = {
+		name = lateran_denial_news_resp
+	}
+}
+
+# Italy has given up Rome
+country_event = {
+	id = kog.latchal.2
+
+	title = lateran_challenge_rome_title
+	desc = lateran_challenge_rome_body
+	picture = GFX_report_event_election_vote
+
+	is_triggered_only = yes
+
+	hidden = no
+
+	fire_only_once = yes
+
+	option = {
+		name = response_excellent
+
+		set_cosmetic_tag = HLS_VAT_monarchist
+	}
+}
+
+# Roman surrender news event
+news_event = {
+	id = kog.rome_surrender
+
+	title = lateran_rome_surrender_title
+	desc = lateran_rome_surrender_body
+	picture = GFX_report_event_election_vote
+
+	is_triggered_only = yes
+	hidden = no
+	fire_only_once = yes
+
+	option = {
+		name = lateran_rome_surrender_resp
+	}
+}
+
+# Italy has returned the Papal States
+country_event = {
+	id = kog.latchal.3
+	
+	title = lateran_challenge_papstate_title
+	desc = lateran_challenge_papstate_body
+	picture = GFX_report_event_election_vote
+	
+	is_triggered_only = yes
+
+	hidden = no
+
+	fire_only_once = yes
+
+	option = {
+		name = response_excellent
+
+		set_cosmetic_tag = HLS_PAP_monarchist
+	}
+}
+
+# Papal states surrender news event
+news_event = {
+	id = kog.papalsurrender
+
+	title = lateran_papal_states_news_title
+	desc = lateran_papal_states_news_body
+	picture = GFX_report_event_election_vote
+
+	is_triggered_only = yes
+	hidden = no
+	fire_only_once = yes
+
+	option = {
+		name = lateran_papal_states_news_resp
+	}
+}
+
+# Italy has submitted
+country_event = {
+	id = kog.latchal.4
+	
+	is_triggered_only = yes
+
+	hidden = no
+
+	fire_only_once = yes
+
+	title = lateran_challenge_italysubmit_title
+	desc = lateran_challenge_italysubmit_body
+	picture = GFX_report_event_election_vote
+
+	option = {
+		name = response_excellent
+
+		set_cosmetic_tag = HLS_PAP_monarchist
+	}
+}
+
+# Italian submission news event
+news_event = {
+	id = kog.kogproclaimed
+
+	title = lateran_challenge_italysubmit_news_title
+	desc = lateran_challenge_italysubmit_news_body
+	picture = GFX_report_event_election_vote
+
+	option = {
+		name = lateran_challenge_italysubmit_news_resp
+	}
+}
+
+# Papal apology for demanding Latium
+country_event = {
+	id = kog.papalapology
+	
+	is_triggered_only = yes
+
+	hidden = no
+
+	fire_only_once = yes
+
+	title = papalapology_title
+	desc = papalapology_body
+	picture = GFX_report_event_election_vote
+
+	option = {
+		name = response_good
+	}
+}
+
+# Reaffirm the Lateran Treaty
+news_event = {
+	id = kog.1
+
+	is_triggered_only = yes
+
+	hidden = no
+
+	fire_only_once = yes
+
+	title = lateranreaffirm_title
+	desc = lateranreaffirm_body
+	picture = GFX_report_event_election_vote
+
+	option = {
+		name - response_good
+	}
+}
+
+# Demand San Marino
+country_event = {
+	id = kog.demandsan
+	
+	title = demandsan_title
+	desc = demandsan_body
+	picture = GFX_report_event_election_vote
+
+	is_triggered_only = yes
+	hidden = no
+	fire_only_once = yes
+
+	# Submit to Papal rule
+	option = {
+		name = sanaccept
+
+		ai_chance = {
+			factor = 25
+
+			modifier = {
+				factor = 3
+
+				HLS = {
+					owns_state = 1128
+				}
+			}
+		}
+
+		HLS = {
+			country_event = {
+				id = kog.sanaccept
+			}
+		}
+	}
+
+	# Refuse to submit
+	option = {
+		name = sanrefuse
+
+		ai_chance = {
+			factor = 25
+		}
+
+		HLS = {
+			country_event = {
+				id = kog.sanrefuse
+			}
+		}
+	}
+}
+
+# San Marino accepts
+country_event = {
+	id = kog.sanaccept
+
+	title = sanaccept_title
+	desc = sanaccept_body
+	picture = GFX_report_event_election_vote
+
+	is_triggered_only = yes
+	hidden = no
+	fire_only_once = yes
+
+	option = {
+		name = response_excellent
+
+		annex_country = SAN
+	}	
+}
+
+# San Marino refuses
+country_event = {
+	id = kog.sanrefuse
+
+	title = sanrefuse_title
+	desc = sanrefuse_body
+	picture = GFX_report_event_election_vote
+	
+	is_triggered_only = yes
+	hidden = no
+	fire_only_once = yes
+
+	option = {
+		name = sanrefuse_resp
+
+		add_state_claim = 854
+	}
+}
+
+# Demand full territory
+country_event = {
+	id = kog.demand_full_territory
+
+	title = demand_full_territory_title
+	desc = demand_full_territory_body
+	picture = GFX_report_event_election_vote
+
+	is_triggered_only = yes
+	hidden = no
+	fire_only_once = yes
+
+	# Accept
+	option = {
+		name = demand_full_territory_accept
+
+		HLS = {
+			owns_state = 1128
+		}
+	}
+
+	# Refuse
+	option = {
+		name = demand_full_territory_decline
+
+		HLS = {
+			country_event = {
+				id = kog.demand_full_territory_refuse
+			}
+		}
+	}
+}
+
+# Italy refuses to hand over territory
+country_event = {
+	id = kog.demand_full_territory_refuse
+
+	title = demand_full_territory_refuse_title
+	desc = demand_full_territory_refuse_body
+	picture = GFX_report_event_election_vote
+
+	is_triggered_only = yes
+	hidden = no
+	fire_only_once = yes
+
+	# Declare war
+	option = {
+		name = demand_full_territory_refuse_war
+
+		HLS = {
+			declare_war_on = {
+				target = ITA
+				type = annex_everything
+			}
+		}
+	}
+
+	# Excommunicate
+	option = {
+		name = lateran_denied_response.2
+
+		add_opinion_modifier = {
+			target = ITA
+			modifier = excommunicated
+		}
+
+		add_state_claim = 1128
+
+		ITA = {
+			add_opinion_modifier = {
+				target = HLS
+				modifier = excommunicated
+			}
+		}
+
+		create_wargoal = {
+			type = annex_everything
+			target = ITA
+		}
+	}
+}
+
+# Offer to purchase the Papal States
+country_event = {
+	id = kog.purchase_papal_states
+
+	title = purchase_papal_states_title
+	desc = purchase_papal_states_body
+	picture = GFX_report_event_election_vote
+
+	is_triggered_only = yes
+	hidden = no
+	fire_only_once = yes
+
+	# Approve
+	option = {
+		name = purchase_papal_states_approve
+
+		add_timed_idea = {
+			idea = kog_papal_purchase_recipient
+			days = 1825
+		}
+
+		HLS = {
+			add_timed_idea = {
+				idea = kog_papal_purchase_sender
+				days = 1825
+			}
+		}
+	}
+
+	# Deny
+	option = {
+		name = purchase_papal_states_deny
+	}
+}

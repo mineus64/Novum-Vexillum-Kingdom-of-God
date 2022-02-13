@@ -1,0 +1,217 @@
+ideas = {
+	country = {
+		# Industrial focus
+		kog_industrial_focus = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			cancel = {
+				has_idea = kog_military_focus
+				has_idea = kog_dockyard_focus
+			}
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			modifier = {
+				production_speed_industrial_complex_factor = 1.1
+				production_speed_arms_factory_factor = 0.95
+				production_speed_dockyard_factor = 0.95
+			}
+
+			ai_will_do = {
+				factor = 1
+			}
+
+			name = kog_industrial_focus
+		}
+
+		# Military focus
+		kog_military_focus = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			cancel = {
+				has_idea = kog_industrial_focus
+				has_idea = kog_dockyard_focus
+			}
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+				
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			modifier = {
+				production_speed_industrial_complex_factor = 0.95
+				production_speed_arms_factory_factor = 1.1
+				production_speed_dockyard_factor = 0.95
+			}
+
+			ai_will_do = {
+				factor = 1
+			}
+
+			name = kog_military_focus
+		}
+
+		# Industrial focus
+		kog_dockyard_focus = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			cancel = {
+				has_idea = kog_industrial_focus
+				has_idea = kog_military_focus
+			}
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+				
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			modifier = {
+				production_speed_industrial_complex_factor = 0.95
+				production_speed_arms_factory_factor = 0.95
+				production_speed_dockyard_factor = 1.1
+			}
+
+			ai_will_do = {
+				factor = 1
+			}
+
+			name = kog_dockyard_focus
+		}
+
+		# Papal Purchase (recipient)
+		kog_papal_purchase_recipient = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = ITA
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				consumer_goods_factor = -0.1
+			}
+
+			name = kog_papal_purchase_recipient
+		}
+
+		# Papal Purchase (sender)
+		kog_papal_purchase_sender = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				consumer_goods_factor = 0.1
+			}
+
+			name = kog_papal_purchase_sender
+		}
+
+		# Prepare the Crusade
+		kog_prepare_the_crusade = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				conscription = 0.02
+			}
+
+			name = kog_prepare_the_crusade
+		}
+
+		# Call to Arms
+		kog_call_to_arms = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				conscription = 0.03
+				weekly_manpower = 1000
+			}
+
+			name = kog_call_to_arms
+		}
+
+		# Ready the Spirit
+		kog_ready_the_spirit = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				attrition = -0.1
+			}
+
+			name = kog_ready_the_spirit
+		}
+	}
+}

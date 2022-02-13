@@ -1,0 +1,4 @@
+JER = "countries/jerusalem.txt"
+TRP = "countries/tripoli.txt"
+ANT = "countries/antioch.txt"
+EDE = "countries/edessa.txt"

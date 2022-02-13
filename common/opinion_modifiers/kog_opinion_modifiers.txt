@@ -1,0 +1,9 @@
+opinion_modifiers = {
+	denied_kog = {
+		value = -50
+	}
+
+	excommunicated = {
+		value = -100
+	}
+}
