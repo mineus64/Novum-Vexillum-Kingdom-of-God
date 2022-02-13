@@ -10,9 +10,9 @@ tags={
 	"Technologies"
 }
 name="Novum Vexillum: The Kingdom of God"
-supported_version="1.11.5"
-path="mod/NV-KoG"
-#replace_path="common/national_focus"
 dependencies={
 	"Novum Vexillum"
 }
+supported_version="1.11.5"
+path="C:/Users/Akira/Documents/Paradox Interactive/Hearts of Iron IV/mod/NV-KoG"
+remote_file_id="2752421394"
