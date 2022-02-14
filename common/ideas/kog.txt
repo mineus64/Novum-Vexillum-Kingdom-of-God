@@ -24,9 +24,9 @@ ideas = {
 			}
 
 			modifier = {
-				production_speed_industrial_complex_factor = 1.1
-				production_speed_arms_factory_factor = 0.95
-				production_speed_dockyard_factor = 0.95
+				production_speed_industrial_complex_factor = 0.1
+				production_speed_arms_factory_factor = -0.05
+				production_speed_dockyard_factor = -0.05
 			}
 
 			ai_will_do = {
@@ -60,9 +60,9 @@ ideas = {
 			}
 
 			modifier = {
-				production_speed_industrial_complex_factor = 0.95
-				production_speed_arms_factory_factor = 1.1
-				production_speed_dockyard_factor = 0.95
+				production_speed_industrial_complex_factor = -0.05
+				production_speed_arms_factory_factor = 0.1
+				production_speed_dockyard_factor = -0.05
 			}
 
 			ai_will_do = {
@@ -96,9 +96,9 @@ ideas = {
 			}
 
 			modifier = {
-				production_speed_industrial_complex_factor = 0.95
-				production_speed_arms_factory_factor = 0.95
-				production_speed_dockyard_factor = 1.1
+				production_speed_industrial_complex_factor = -0.05
+				production_speed_arms_factory_factor = -0.05
+				production_speed_dockyard_factor = 0.1
 			}
 
 			ai_will_do = {
@@ -212,6 +212,142 @@ ideas = {
 			}
 
 			name = kog_ready_the_spirit
+		}
+
+		# Peace on Earth
+		kog_peace_on_earth = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				consumer_goods_factor = 0.05
+			}
+
+			name = kog_peace_on_earth
+		}
+
+		# Stabilising the Holy Land
+		kog_stabilise_holy_land = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				consumer_goods_factor = 0.15
+			}
+
+			name = kog_stabilise_holy_land
+		}
+
+		# Defend the Holy Land
+		kog_holy_land_defence = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				army_core_attack_factor = 0.1
+				army_core_defence_factor = 0.1
+				production_speed_bunker_factor = 0.25
+			}
+
+			name = kog_holy_land_defence
+		}
+
+		# Ninth Crusade
+		kog_ninth_crusade = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				stability_factor = 0.05
+				war_support_factor = 0.05
+				war_support_weekly = 0.01
+				justify_war_goal_time = -0.1
+			}
+
+			name = kog_ninth_crusade
+		}
+
+		# Tenth Crusade 
+		kog_tenth_crusade = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				war_support_factor = 0.10
+				war_support_weekly = 0.02
+				justify_war_goal_time = -0.25
+			}
+
+			name = kog_tenth_crusade
+		}
+
+		# The Final Crusade
+		kog_final_crusade = {
+			ledger = civilian
+
+			picture = economic_control_icon
+
+			allowed = {
+				original_tag = HLS
+			}
+
+			available = {
+
+			}
+
+			modifier = {
+				stability_factor = -0.05
+				war_support_factor = 0.20
+				war_support_weekly = 0.05
+				justify_war_goal_time = -0.5
+			}
+
+			name = kog_final_crusade
 		}
 	}
 }

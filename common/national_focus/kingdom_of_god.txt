@@ -85,6 +85,7 @@
 	# CHALLENGE TREE #
 	##################
 
+	# Recover San Marino
 	focus = {
 		id = recover_san_marino
 		icon = GFX_focus_generic_industry_1
@@ -119,6 +120,7 @@
 		}
 	}
 
+	# Demand Papal States
 	focus = {
 		id = demand_papal_states
 		icon = GFX_goal_generic_demand_territory
@@ -154,6 +156,7 @@
 		}
 	}
 
+	# Purchase Papal States
 	focus = {
 		id = purchase_papal_states
 		icon = GFX_focus_befriend_italy
@@ -189,6 +192,7 @@
 		}
 	}
 
+	# Drop Papal Claims
 	focus = {
 		id = drop_papal_claims
 		icon = GFX_goal_generic_major_alliance
@@ -222,6 +226,42 @@
 		}
 	}
 
+	###########################
+	# LOVE THE SINNER SUBTREE #
+	###########################
+
+	# Love the Sinner
+	focus = {
+		id = love_the_sinner
+		icon = GFX_goal_liberty
+
+		cost = 10
+
+		x = 24
+		y = 3
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = declare_papal_alliance
+		}
+
+		mutually_exclusive = {
+			focus = prepare_the_crusade
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	###################
+	# CRUSADE SUBTREE #
+	###################
+
+	# Prepare the Crusade
 	focus = {
 		id = prepare_the_crusade
 		icon = GFX_goal_generic_political_pressure
@@ -256,32 +296,7 @@
 		}
 	}
 
-	focus = {
-		id = love_the_sinner
-		icon = GFX_goal_liberty
-
-		cost = 10
-
-		x = 22
-		y = 3
-		
-		available_if_capitulated = no
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-
-		prerequisite = {
-			focus = declare_papal_alliance
-		}
-
-		mutually_exclusive = {
-			focus = prepare_the_crusade
-		}
-
-		completion_reward = {
-
-		}
-	}
-
+	# Call to Arms
 	focus = {
 		id = call_to_arms
 		icon = GFX_focus_generic_little_entente
@@ -306,6 +321,7 @@
 		}
 	}
 
+	# Arm the Faithful
 	focus = {
 		id = arm_the_faithful
 		icon = GFX_goal_generic_small_arms
@@ -332,6 +348,7 @@
 		}
 	}
 
+	# Ready the Spirit
 	focus = {
 		id = ready_the_spirit
 		icon = GFX_goal_generic_propaganda
@@ -358,9 +375,10 @@
 		}
 	}
 
+	# Deus lo Vult!
 	focus = {
 		id = deus_lo_vult
-		icon = GFX_goal_flames_of_rebellion
+		icon = GFX_focus_generic_strike_at_democracy1
 
 		cost = 10
 
@@ -392,11 +410,16 @@
 				target = PAL
 				type = annex_everything
 			}
+			add_ideas = {
+				kog_ninth_crusade
+			}
 		}
 	}
 
+	# Recover the Holy Land
 	focus = {
 		id = recover_holy_land
+		icon = GFX_goal_generic_occupy_states_ongoing_war
 
 		cost = 10
 
@@ -428,11 +451,6 @@
 
 			create_wargoal = {
 				type = annex_everything
-				target = SAU
-			}
-
-			create_wargoal = {
-				type = annex_everything
 				target = EGY
 			}
 
@@ -448,12 +466,14 @@
 		}
 	}
 
+	# Direct Rule of the Holy Land
 	focus = {
-		id = establish_crusader_states
+		id = direct_rule
+		icon = GFX_goal_generic_attack_allies
 
 		cost = 20
 
-		x = 19
+		x = 20
 		y = 7
 		
 		available_if_capitulated = no
@@ -462,58 +482,81 @@
 
 		prerequisite = {
 			focus = recover_holy_land
-		}
-
-		mutually_exclusive = {
-			focus = direct_rule
 		}
 
 		available = {
 			NOT = {
 				country_exists = JOR
-				country_exists = SAU
-				country_exists = EGY
 				country_exists = SYR
 				country_exists = LEB
 			}
+			owns_state = 453
 		}
 
 		completion_reward = {
+			every_state = { 
+				limit = { 
+					is_controlled_by = ISR 
+				} 
+				ROOT = { 
+					add_state_claim = PREV 
+				} 
+			}
 
+			every_state = { 
+				limit = { 
+					is_controlled_by = PAL
+				} 
+				ROOT = { 
+					add_state_claim = PREV 
+				} 
+			}
+
+			every_state = { 
+				limit = { 
+					is_controlled_by = JOR
+				} 
+				ROOT = { 
+					add_state_claim = PREV 
+				} 
+			}
+
+			every_state = { 
+				limit = { 
+					is_controlled_by = SYR
+				} 
+				ROOT = { 
+					add_state_claim = PREV 
+				} 
+			}
+
+			every_state = { 
+				limit = {
+					is_controlled_by = LEB
+				} 
+				ROOT = { 
+					add_state_claim = PREV 
+				} 
+			}
+
+			add_state_claim = 453
+
+			add_stability = -0.1
 		}
 	}
 
-	focus = {
-		id = direct_rule
+	##########################
+	# PEACE ON EARTH SUBTREE #
+	##########################
 
-		cost = 20
-
-		x = 21
-		y = 7
-		
-		available_if_capitulated = no
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-
-		prerequisite = {
-			focus = recover_holy_land
-		}
-
-		mutually_exclusive = {
-			focus = establish_crusader_states
-		}
-
-		completion_reward = {
-
-		}
-	}
-
+	# Peace on Earth
 	focus = {
 		id = peace_on_earth
+		icon = GFX_focus_generic_the_giant_wakes
 
 		cost = 10
 
-		x = 23
+		x = 22
 		y = 8
 		
 		available_if_capitulated = no
@@ -530,12 +573,176 @@
 		}
 
 		completion_reward = {
+			add_ideas = {
+				kog_peace_on_earth
+			}
+			add_stability = 0.1
+			add_war_support = -0.1
 
 		}
 	}
 
+	# Stabilise the Holy Land
+	focus = {
+		id = stabilise_holy_land
+		icon = GFX_goal_generic_major_alliance
+
+		cost = 10
+
+		x = 22
+		y = 9
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = peace_on_earth
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+			add_timed_idea = {
+				idea = kog_stabilise_holy_land
+				days = 720
+			}
+		}
+	}
+
+	# Expel the Heathens
+	focus = {
+		id = expel_the_heathens
+		icon = GFX_goal_tfv_saf_anti_colonialist_crusade
+
+		cost = 10
+
+		x = 21
+		y = 10
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = stabilise_holy_land
+		}
+
+		mutually_exclusive = {
+			focus = tolerate_the_heathens
+		}
+
+		completion_reward = {
+			add_manpower = -25000
+			add_stability = 0.05
+		}
+	}
+
+	# Tolerate the Heathens
+	focus = {
+		id = tolerate_the_heathens
+		icon = GFX_goal_generic_national_unity
+
+		cost = 10
+
+		x = 23
+		y = 10
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = stabilise_holy_land
+		}
+
+		mutually_exclusive = {
+			focus = expel_the_heathens
+		}
+
+		completion_reward = {
+			add_stability = -0.1
+		}
+	}
+
+	# Claim our Lands
+	focus = {
+		id = claim_our_lands
+		icon = GFX_goal_generic_territory_or_war
+
+		cost = 30
+
+		x = 22
+		y = 11
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = expel_the_heathens
+			focus = tolerate_the_heathens
+		}
+
+		completion_reward = {
+			add_state_core = 453
+			add_state_core = 812
+			add_state_core = 811
+			add_state_core = 454
+			add_state_core = 914
+			add_state_core = 915
+			add_state_core = 810
+			add_state_core = 454
+			add_state_core = 881
+			add_state_core = 455
+			add_state_core = 993
+			add_state_core = 553
+			add_state_core = 554
+			add_state_core = 1004
+			add_state_core = 1049
+			add_state_core = 1005
+			add_state_core = 677
+			add_state_core = 1003
+			add_state_core = 1048
+			add_state_core = 814
+			add_state_core = 1046
+			add_state_core = 680
+			add_state_core = 1047
+		}
+	}
+
+	# Secure the Holy Land
+	focus = {
+		id = secure_the_holy_land
+		icon = GFX_goal_generic_small_arms
+
+		cost = 10
+
+		x = 22
+		y = 12
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = claim_our_lands
+		}
+
+		completion_reward = {
+			add_ideas = {
+				kog_holy_land_defence
+			}
+		}
+	}
+
+	################################
+	# CONTINUE THE CRUSADE SUBTREE #
+	################################
+
+	# Continue the Crusade
 	focus = {
 		id = continue_the_crusade
+		icon = GFX_focus_generic_strike_at_democracy2
 
 		cost = 10
 
@@ -555,10 +762,14 @@
 		}
 
 		completion_reward = {
-
+			swap_ideas = {
+				remove_idea = kog_ninth_crusade
+				add_idea = kog_tenth_crusade
+			}
 		}
 	}
 
+	# Target Heathens
 	focus = {
 		id = heathens
 
@@ -580,6 +791,7 @@
 		}
 	}
 
+	# Target Heretics
 	focus = {
 		id = heretics
 
@@ -605,6 +817,7 @@
 		}
 	}
 
+	# A Holy Compromise
 	focus = {
 		id = compromise
 
@@ -630,6 +843,7 @@
 		}
 	}
 
+	# Strike the Turks
 	focus = {
 		id = remove_kebab
 
@@ -654,6 +868,7 @@
 		}
 	}
 
+	# Expand the Holy Land
 	focus = {
 		id = expand_holy_land
 
@@ -718,6 +933,7 @@
 		}
 	}
 
+	# The False Christians
 	focus = {
 		id = false_christians
 
@@ -746,6 +962,7 @@
 		}
 	}
 
+	# The First Heretics
 	focus = {
 		id = first_heretics
 
@@ -770,6 +987,7 @@
 		}
 	}
 
+	# Secure North Africa
 	focus = {
 		id = secure_north_africa
 
@@ -810,6 +1028,7 @@
 		}
 	}
 
+	# Slavic Dominion
 	focus = {
 		id = slavic_domination
 
@@ -858,35 +1077,11 @@
 		}
 	}
 
-	focus = {
-		id = the_final_crusade
+	##########################
+	# KINGDOM OF GOD SUBTREE #
+	##########################
 
-		cost = 20
-
-		x = 16
-		y = 12
-		
-		available_if_capitulated = no
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-
-		prerequisite = {
-			focus = secure_north_africa
-		}
-
-		prerequisite = {
-			focus = slavic_domination
-		}
-
-		mutually_exclusive = {
-			focus = peace_at_last
-		}
-
-		completion_reward = {
-
-		}
-	}
-
+	# Peace At Last
 	focus = {
 		id = peace_at_last
 
@@ -916,6 +1111,44 @@
 		}
 	}
 
+	#############################
+	# THE FINAL CRUSADE SUBTREE #
+	#############################
+
+	# THE FINAL CRUSADE
+	focus = {
+		id = the_final_crusade
+
+		cost = 20
+
+		x = 16
+		y = 12
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		prerequisite = {
+			focus = secure_north_africa
+		}
+
+		prerequisite = {
+			focus = slavic_domination
+		}
+
+		mutually_exclusive = {
+			focus = peace_at_last
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = kog_tenth_crusade
+				add_idea = kog_final_crusade
+			}
+		}
+	}
+
+	# The Anglican Menace
 	focus = {
 		id = anglican_menace
 
@@ -940,6 +1173,7 @@
 		}
 	}
 
+	# The Protestant Heresy
 	focus = {
 		id = protestant_heresy
 
@@ -964,6 +1198,7 @@
 		}
 	}
 
+	# The Last Heretics
 	focus = {
 		id = last_heretics
 
@@ -988,6 +1223,7 @@
 		}
 	}
 
+	# Communist Bandits
 	focus = {
 		id = communist_bandits
 
@@ -1016,8 +1252,10 @@
 		}
 	}
 
+	# Fall of Liberty
 	focus = {
 		id = fall_of_liberty
+		icon = GFX_focus_generic_strike_at_democracy3
 
 		cost = 10
 
@@ -1044,6 +1282,7 @@
 		}
 	}
 
+	# A New Eden
 	focus = {
 		id = a_new_eden
 
@@ -1079,9 +1318,10 @@
 	# PAPAL ALLIANCE TREE #
 	#######################
 
+	# Declare Papal Alliance
 	focus = {
 		id = declare_papal_alliance
-		icon = GFX_focus_generic_support_the_left_right
+		icon = GFX_goal_generic_alliance
 
 		cost = 10
 
@@ -1106,6 +1346,7 @@
 	# INDUSTRIAL TREE #
 	###################
 
+	# Industrialise the Vatican
 	focus = {
 		id = industrialise_the_vatican
 		icon = GFX_focus_generic_industry_2
@@ -1155,6 +1396,7 @@
 		}
 	}
 
+	# Rebuild Rome
 	focus = {
 		id = rebuild_rome
 		icon = GFX_focus_generic_industry_3
@@ -1208,6 +1450,7 @@
 		}
 	}
 
+	# Expand San Marino
 	focus = {
 		id = expand_san_marino
 		icon = GFX_focus_generic_industry_3
@@ -1261,6 +1504,7 @@
 		}
 	}
 
+	# Invest in the Papal States
 	focus = {
 		id = invest_in_papal_states
 		icon = GFX_focus_generic_industry_3
@@ -1314,6 +1558,7 @@
 		}
 	}
 
+	# Rebuild Jerusalem
 	focus = {
 		id = rebuild_jerusalem
 		icon = GFX_focus_generic_industry_3
@@ -1358,6 +1603,7 @@
 		}
 	}
 
+	# Civilian Expansion 1
 	focus = {
 		id = add_civ_1
 		icon = GFX_goal_generic_construct_civ_factory
@@ -1395,6 +1641,7 @@
 		}
 	}
 
+	# Civilian Expansion 2
 	focus = {
 		id = add_civ_2
 		icon = GFX_goal_generic_construct_civ_factory
@@ -1432,6 +1679,7 @@
 		}
 	}
 
+	# Civilian Expansion 3
 	focus = {
 		id = add_civ_3
 		icon = GFX_goal_generic_construct_civ_factory
@@ -1469,6 +1717,7 @@
 		}
 	}
 
+	# Civilian Focus
 	focus = {
 		id = add_civ_4
 		icon = GFX_goal_generic_construct_civ_factory
@@ -1509,11 +1758,12 @@
 				instant_build = yes
 			}
 			add_ideas = {
-				id = kog_industrial_focus
+				kog_industrial_focus
 			}
 		}
 	}
 
+	# Military Expansion 1
 	focus = {
 		id = add_mil_1
 		icon = GFX_goal_generic_construct_mil_factory
@@ -1551,6 +1801,7 @@
 		}
 	}
 
+	# Military Expansion 2
 	focus = {
 		id = add_mil_2
 		icon = GFX_goal_generic_construct_mil_factory
@@ -1588,6 +1839,7 @@
 		}
 	}
 
+	# Military Expansion 3
 	focus = {
 		id = add_mil_3
 		icon = GFX_goal_generic_construct_mil_factory
@@ -1625,6 +1877,7 @@
 		}
 	}
 
+	# Military Focus
 	focus = {
 		id = add_mil_4
 		icon = GFX_goal_generic_construct_mil_factory
@@ -1665,11 +1918,12 @@
 				instant_build = yes
 			}
 			add_ideas = {
-				id = kog_military_focus
+				kog_military_focus
 			}
 		}
 	}
 
+	# Dockyard Expansion 1
 	focus = {
 		id = add_dock_1
 		icon = GFX_goal_generic_construct_civilian
@@ -1682,6 +1936,12 @@
 		available_if_capitulated = no
 		cancel_if_invalid = yes
 		continue_if_invalid = no
+
+		available = {
+			any_owned_state = {
+    			is_coastal = yes
+			}
+		}
 
 		prerequisite = {
 			focus = industrialise_the_vatican
@@ -1707,6 +1967,7 @@
 		}
 	}
 
+	# Dockyard Expansion 2
 	focus = {
 		id = add_dock_2
 		icon = GFX_goal_generic_construct_civilian
@@ -1719,6 +1980,12 @@
 		available_if_capitulated = no
 		cancel_if_invalid = yes
 		continue_if_invalid = no
+
+		available = {
+			any_owned_state = {
+    			is_coastal = yes
+			}
+		}
 
 		prerequisite = {
 			focus = add_dock_1
@@ -1744,6 +2011,7 @@
 		}
 	}
 
+	# Dockyard Expansion 3
 	focus = {
 		id = add_dock_3
 		icon = GFX_goal_generic_construct_civilian
@@ -1756,6 +2024,12 @@
 		available_if_capitulated = no
 		cancel_if_invalid = yes
 		continue_if_invalid = no
+		
+		available = {
+			any_owned_state = {
+    			is_coastal = yes
+			}
+		}
 
 		prerequisite = {
 			focus = add_dock_2
@@ -1781,6 +2055,7 @@
 		}
 	}
 
+	# Dockyard Focus
 	focus = {
 		id = add_dock_4
 		icon = GFX_goal_generic_construct_civilian
@@ -1793,6 +2068,12 @@
 		available_if_capitulated = no
 		cancel_if_invalid = yes
 		continue_if_invalid = no
+		
+		available = {
+			any_owned_state = {
+    			is_coastal = yes
+			}
+		}
 
 		prerequisite = {
 			focus = add_dock_3
@@ -1821,74 +2102,27 @@
 				instant_build = yes
 			}
 			add_ideas = {
-				id = kog_dockyard_focus
+				kog_dockyard_focus
 			}
 		}
 	}
 
-	################
-	# THE OLD WAYS #
-	################
+	####################
+	# INDULGENCES TREE #
+	####################
 
-	focus = {
-		id = the_old_ways
-		icon = GFX_focus_RAJ_indian_gentlemen_offcers
-
-		cost = 10
-
-		x = 8
-		y = 0
-		
-		available_if_capitulated = no
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-
-		mutually_exclusive = {
-			focus = the_new_ways
-		}
-
-		completion_reward = {
-
-		}
-	}
-
-	focus = {
-		id = condemn_homosexuality
-
-		cost = 10
-		
-		x = 8
-		y = 1
-		
-		available_if_capitulated = no
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-
-		prerequisite = {
-			focus = the_old_ways
-		}
-
-		completion_reward = {
-
-		}
-	}
-
+	# Sale of Indulgences
 	focus = {
 		id = indulgences
 
 		cost = 10
 
-		x = 11
-		y = 1
+		x = 10
+		y = 0
 		
 		available_if_capitulated = no
 		cancel_if_invalid = yes
 		continue_if_invalid = no
-
-		prerequisite = {
-			focus = the_old_ways
-			focus = the_new_ways
-		}
 
 		mutually_exclusive = {
 			focus = remember_martin_luther
@@ -1899,64 +2133,22 @@
 		}
 	}
 
-	################
-	# THE NEW WAYS #
-	################
+	###############
+	# REFORM TREE #
+	###############
 
-	focus = {
-		id = the_new_ways
-		icon = GFX_goal_generic_national_unity
-
-		cost = 10
-
-		x = 16
-		y = 0
-		
-		available_if_capitulated = no
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-
-		mutually_exclusive = {
-			focus = the_old_ways
-		}
-
-		completion_reward = {
-
-		}
-	}
-
-	focus = {
-		id = tolerate_homosexuality
-
-		cost = 10
-
-		x = 16
-		y = 1
-		
-		available_if_capitulated = no
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-
-		prerequisite = {
-			focus = the_new_ways
-		}
-	}
-
+	# Remember Martin Luther
 	focus = {
 		id = remember_martin_luther
 
 		cost = 10
 
-		x = 13
-		y = 1
+		x = 14
+		y = 0
 		
 		available_if_capitulated = no
 		cancel_if_invalid = yes
 		continue_if_invalid = no
-
-		prerequisite = {
-			focus = the_new_ways
-		}
 
 		mutually_exclusive = {
 			focus = indulgences
